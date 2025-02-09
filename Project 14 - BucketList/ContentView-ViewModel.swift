@@ -9,6 +9,7 @@ import CoreLocation
 import Foundation
 import LocalAuthentication
 import MapKit
+import SwiftUI
 
 extension ContentView {
     @Observable
@@ -17,6 +18,10 @@ extension ContentView {
         var selectedPlace: Location?
         let savePath = URL.documentsDirectory.appending(path: "SavedPlaces")
         var isUnlocked = false
+        var isBiometricsUnavailablePresented = false
+        var isAuthenticationFailedPresented = false
+        var selectedMode = "Standard"
+        var modes = ["Standard", "Hybrid"]
         
         init() {
             do {
@@ -76,12 +81,12 @@ extension ContentView {
                             self.isUnlocked = true
                         }
                         else {
-                            // error
+                            self.isAuthenticationFailedPresented = true
                         }
                     }
                 }
             } else {
-                // no biometrics
+                isBiometricsUnavailablePresented = true
             }
         }
     }

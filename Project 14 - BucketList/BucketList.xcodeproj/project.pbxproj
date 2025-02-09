@@ -10,6 +10,7 @@
 		960AF8B12D59123C009F891B /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960AF8B02D59123C009F891B /* EditView.swift */; };
 		960AF8B32D59179B009F891B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960AF8B22D59179B009F891B /* Result.swift */; };
 		96824A702D591BB600F02930 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96824A6F2D591BB400F02930 /* ContentView-ViewModel.swift */; };
+		96824A7B2D59319D00F02930 /* EditView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96824A7A2D59319D00F02930 /* EditView-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +18,7 @@
 		960AF8B02D59123C009F891B /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		960AF8B22D59179B009F891B /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		96824A6F2D591BB400F02930 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
+		96824A7A2D59319D00F02930 /* EditView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -41,6 +43,7 @@
 		960AF87B2D50ABF5009F891B = {
 			isa = PBXGroup;
 			children = (
+				96824A7A2D59319D00F02930 /* EditView-ViewModel.swift */,
 				960AF8B22D59179B009F891B /* Result.swift */,
 				960AF8B02D59123C009F891B /* EditView.swift */,
 				96824A6F2D591BB400F02930 /* ContentView-ViewModel.swift */,
@@ -134,6 +137,7 @@
 				960AF8B32D59179B009F891B /* Result.swift in Sources */,
 				96824A702D591BB600F02930 /* ContentView-ViewModel.swift in Sources */,
 				960AF8B12D59123C009F891B /* EditView.swift in Sources */,
+				96824A7B2D59319D00F02930 /* EditView-ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

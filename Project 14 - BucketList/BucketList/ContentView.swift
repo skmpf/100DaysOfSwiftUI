@@ -46,31 +46,45 @@ struct ContentView: View {
 
     var body: some View {
         if viewModel.isUnlocked {
-            MapReader { proxy in
-                Map(initialPosition: startPosition) {
-                    ForEach(viewModel.locations) { location in
-                        Annotation(location.name, coordinate: location.coordinate) {
-                            Image(systemName: "star.circle")
-                                .resizable()
-                                .foregroundStyle(.red)
-                                .frame(width: 32, height: 32)
-                                .background(.white)
-                                .clipShape(.circle)
-                                .onLongPressGesture(minimumDuration: 0.2) {
-                                    viewModel.selectedPlace = location
-                                }
+            VStack {
+                MapReader { proxy in
+                    Map(initialPosition: startPosition) {
+                        ForEach(viewModel.locations) { location in
+                            Annotation(location.name, coordinate: location.coordinate) {
+                                Image(systemName: "star.circle")
+                                    .resizable()
+                                    .foregroundStyle(.red)
+                                    .frame(width: 32, height: 32)
+                                    .background(.white)
+                                    .clipShape(.circle)
+                                    .onLongPressGesture(minimumDuration: 0.2) {
+                                        viewModel.selectedPlace = location
+                                    }
+                            }
                         }
                     }
-                }
-                .mapStyle(.hybrid)
-                .onTapGesture { position in
-                    if let coordinate = proxy.convert(position, from: .local) {
-                        viewModel.addLocation(at: coordinate)
+                    .mapStyle(viewModel.selectedMode == "Standard" ? .standard : .hybrid)
+                    .onTapGesture { position in
+                        if let coordinate = proxy.convert(position, from: .local) {
+                            viewModel.addLocation(at: coordinate)
+                        }
+                    }
+                    .sheet(item: $viewModel.selectedPlace) { place in
+                        EditView(location: place) {
+                            viewModel.update(location: $0)
+                        }
+                    }
+                    .alert("Biometry is unavailable.", isPresented: $viewModel.isBiometricsUnavailablePresented) {
+                        Button("OK", role: .cancel) {}
+                    }
+                    .alert("Authentication failed, please try again.", isPresented: $viewModel.isAuthenticationFailedPresented) {
+                        Button("OK", role: .cancel) {}
                     }
                 }
-                .sheet(item: $viewModel.selectedPlace) { place in
-                    EditView(location: place) {
-                        viewModel.update(location: $0)
+                
+                Picker("Map mode", selection: $viewModel.selectedMode) {
+                    ForEach(viewModel.modes, id: \.self) {
+                        Text($0)
                     }
                 }
             }
